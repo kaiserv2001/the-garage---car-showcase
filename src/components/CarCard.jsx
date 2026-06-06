@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-export default function CarCard({ car, index, isActive, onHover, onSelect }) {
+export default function CarCard({ car, index, isActive, onHover, onSelect, onHoverSound, onClickSound }) {
   const [loaded, setLoaded] = useState(false)
 
   return (
@@ -20,9 +20,9 @@ export default function CarCard({ car, index, isActive, onHover, onSelect }) {
         rotateY: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
         scale: { duration: 0.4 },
       }}
-      onHoverStart={() => onHover(car.id)}
+      onHoverStart={() => { onHover(car.id); onHoverSound?.() }}
       onHoverEnd={() => onHover(null)}
-      onClick={() => onSelect(car)}
+      onClick={() => { onSelect(car); onClickSound?.() }}
       className="relative flex-shrink-0"
       style={{
         width: isActive ? '280px' : '200px',

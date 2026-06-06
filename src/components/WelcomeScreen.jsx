@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-export default function WelcomeScreen({ onEnter }) {
+export default function WelcomeScreen({ onEnter, onHover }) {
   return (
     <motion.div
       className="fixed inset-0 z-[200] flex flex-col items-center justify-center"
@@ -8,7 +8,6 @@ export default function WelcomeScreen({ onEnter }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      {/* Subtle vignette */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -32,6 +31,7 @@ export default function WelcomeScreen({ onEnter }) {
 
         <motion.button
           onClick={onEnter}
+          onMouseEnter={onHover}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
           className="px-12 py-4 text-xs font-bold tracking-[0.4em] uppercase text-black transition-opacity hover:opacity-90"

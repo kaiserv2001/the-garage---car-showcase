@@ -6,6 +6,7 @@ import FeaturedCars from './components/FeaturedCars'
 import CarDetailPanel from './components/CarDetailPanel'
 import GallerySection from './components/GallerySection'
 import WelcomeScreen from './components/WelcomeScreen'
+import { useSound } from './hooks/useSound'
 import './index.css'
 
 function App() {
@@ -14,33 +15,38 @@ function App() {
   const [muted, setMuted] = useState(false)
   const audioRef = useRef(null)
 
+  const playHover = useSound('/audio/menu.mp3', 0.45)
+  const playClick = useSound('/audio/onclick.mp3', 0.45)
+
   const handleEnter = useCallback(() => {
     setWelcomed(true)
     if (audioRef.current) {
-      audioRef.current.volume = 0.15
+      audioRef.current.volume = 0.05
       audioRef.current.play().catch(() => {})
     }
-  }, [])
+    playClick()
+  }, [playClick])
 
   const toggleMute = useCallback(() => {
     if (audioRef.current) {
       audioRef.current.muted = !muted
       setMuted(m => !m)
     }
-  }, [muted])
+    playClick()
+  }, [muted, playClick])
 
   return (
     <div className="min-h-screen bg-black text-white">
       <audio ref={audioRef} src="/audio/bgmusic.mp3" loop />
 
       <AnimatePresence>
-        {!welcomed && <WelcomeScreen key="welcome" onEnter={handleEnter} />}
+        {!welcomed && <WelcomeScreen key="welcome" onEnter={handleEnter} onHover={playHover} />}
       </AnimatePresence>
 
-      {/* Mute/unmute — only after entering */}
       {welcomed && (
         <button
           onClick={toggleMute}
+          onMouseEnter={playHover}
           className="fixed top-5 right-5 z-50 p-2.5 rounded-full transition-colors duration-200 hover:bg-white/10"
           style={{ border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(0,0,0,0.5)' }}
           title={muted ? 'Unmute' : 'Mute'}
@@ -52,13 +58,13 @@ function App() {
         </button>
       )}
 
-      <HeroSection />
-      <FeaturedCars onSelect={setSelectedCar} />
-      <GallerySection onSelect={setSelectedCar} />
+      <HeroSection onHover={playHover} onClick={playClick} />
+      <FeaturedCars onSelect={setSelectedCar} onHover={playHover} onClick={playClick} />
+      <GallerySection onSelect={setSelectedCar} onHover={playHover} onClick={playClick} />
       <footer className="border-t border-white/[0.05] py-8 text-center">
         <p className="text-gray-700 text-xs tracking-[0.4em] uppercase">Curated automotive showcase</p>
       </footer>
-      <CarDetailPanel car={selectedCar} onClose={() => setSelectedCar(null)} />
+      <CarDetailPanel car={selectedCar} onClose={() => setSelectedCar(null)} onHover={playHover} onClick={playClick} />
     </div>
   )
 }

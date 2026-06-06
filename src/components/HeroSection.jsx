@@ -11,7 +11,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } }
 }
 
-function HeroSection() {
+function HeroSection({ onHover, onClick }) {
   return (
     <section
       className="relative h-screen overflow-hidden"
@@ -62,13 +62,15 @@ function HeroSection() {
 
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-6">
           <button
-            onClick={() => document.getElementById('featured')?.scrollIntoView({ behavior: 'smooth' })}
+            onMouseEnter={onHover}
+            onClick={() => { document.getElementById('featured')?.scrollIntoView({ behavior: 'smooth' }); onClick?.() }}
             className="px-8 py-3 border-2 border-white text-white font-semibold tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300"
           >
             Explore Cars
           </button>
           <button
-            onClick={() => document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' })}
+            onMouseEnter={onHover}
+            onClick={() => { document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' }); onClick?.() }}
             className="px-8 py-3 text-gray-300 font-semibold tracking-wider uppercase hover:text-white transition-colors duration-300"
           >
             View Collection →
