@@ -210,6 +210,27 @@ export const cars = [
     description: "Limited to just 10 examples, the Apollo IE is a road-legal track hypercar built without a single gram of compromise. A Hewland sequential gearbox borrowed from motorsport and a naturally aspirated 6.3L V12 screaming to 9,000 rpm make it one of the most analogue hypercars ever created. Its carbon monocoque and full aero bodywork generate downforce rivaling LMP prototype racecars."
   },
   {
+    id: "chevrolet-corvette",
+    brand: "Chevrolet",
+    model: "Corvette C8 Z06",
+    tagline: "America's supercar, redefined.",
+    image: "/cars/chevrolet-corvette.jpg",
+    logo: "/logos/chevrolet.svg",
+    horsepower: "670 HP",
+    torque: "460 lb-ft",
+    topSpeed: "195 MPH",
+    zeroToSixty: "2.6s",
+    weight: "3,366 lbs",
+    engine: "5.5L Naturally Aspirated Flat-Plane V8 (LT6)",
+    drivetrain: "RWD",
+    productionYears: "2023–present",
+    country: "USA",
+    color: "#FFD700",
+    gradient: "linear-gradient(137deg, #FFD700 0%, #FFA500 50%, #8B6500 100%)",
+    category: "american",
+    description: "The C8 Z06 marks a turning point for Corvette — its 5.5L flat-plane crank V8 is the most powerful naturally aspirated engine ever fitted to a production Chevrolet, revving to 8,600 rpm with a howl borrowed from GT3 race cars. Mid-engine architecture and available Z07 aero package give it genuine supercar handling at a fraction of European hypercar prices."
+  },
+  {
     id: "pagani-utopia",
     brand: "Pagani",
     model: "Utopia",

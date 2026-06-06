@@ -1,14 +1,57 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import { Volume2, VolumeX } from 'lucide-react'
 import HeroSection from './components/HeroSection'
 import FeaturedCars from './components/FeaturedCars'
 import CarDetailPanel from './components/CarDetailPanel'
 import GallerySection from './components/GallerySection'
+import WelcomeScreen from './components/WelcomeScreen'
 import './index.css'
 
 function App() {
   const [selectedCar, setSelectedCar] = useState(null)
+  const [welcomed, setWelcomed] = useState(false)
+  const [muted, setMuted] = useState(false)
+  const audioRef = useRef(null)
+
+  const handleEnter = useCallback(() => {
+    setWelcomed(true)
+    if (audioRef.current) {
+      audioRef.current.volume = 0.15
+      audioRef.current.play().catch(() => {})
+    }
+  }, [])
+
+  const toggleMute = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = !muted
+      setMuted(m => !m)
+    }
+  }, [muted])
+
   return (
     <div className="min-h-screen bg-black text-white">
+      <audio ref={audioRef} src="/audio/bgmusic.mp3" loop />
+
+      <AnimatePresence>
+        {!welcomed && <WelcomeScreen key="welcome" onEnter={handleEnter} />}
+      </AnimatePresence>
+
+      {/* Mute/unmute — only after entering */}
+      {welcomed && (
+        <button
+          onClick={toggleMute}
+          className="fixed top-5 right-5 z-50 p-2.5 rounded-full transition-colors duration-200 hover:bg-white/10"
+          style={{ border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(0,0,0,0.5)' }}
+          title={muted ? 'Unmute' : 'Mute'}
+        >
+          {muted
+            ? <VolumeX className="w-4 h-4 text-gray-400" />
+            : <Volume2 className="w-4 h-4 text-gray-400" />
+          }
+        </button>
+      )}
+
       <HeroSection />
       <FeaturedCars onSelect={setSelectedCar} />
       <GallerySection onSelect={setSelectedCar} />
@@ -19,4 +62,5 @@ function App() {
     </div>
   )
 }
+
 export default App

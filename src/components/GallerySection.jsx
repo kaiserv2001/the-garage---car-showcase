@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
 import { cars } from '../data/cars'
 
-const FILTERS = ['All', 'Supercars', 'JDM', 'European', 'American', 'BMW', 'Porsche', 'Apollo', 'Pagani']
+const FILTERS = ['All', 'Supercars', 'JDM', 'European', 'American', 'BMW', 'Porsche', 'Apollo', 'Pagani', 'Chevrolet']
 
 function matchesFilter(car, filter) {
   if (filter === 'All') return true

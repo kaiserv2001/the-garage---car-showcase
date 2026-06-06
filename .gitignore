@@ -22,13 +22,21 @@ SPRINT.md
 .claude/settings.local.json
 
 # ── Large media files (too big for git) ───────────────────
-# Keep source images in assets/ — only exclude videos
+# Keep source images in assets/ — only exclude videos and audio
 assets/*.mp4
 assets/*.mov
 assets/*.webm
+assets/*.mp3
+assets/*.ogg
+assets/*.wav
+assets/*.m4a
 public/videos/*.mp4
 public/videos/*.mov
 public/videos/*.webm
+public/audio/*.mp3
+public/audio/*.ogg
+public/audio/*.wav
+public/audio/*.m4a
 
 # ── Logs ──────────────────────────────────────────────────
 logs/
