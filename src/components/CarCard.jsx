@@ -40,7 +40,7 @@ export default function CarCard({ car, index, isActive, onHover, onSelect }) {
           borderRadius: '24px',
           background: car.gradient,
           filter: 'blur(38px)',
-          opacity: isActive ? 0.65 : 0.18,
+          opacity: isActive ? 0.42 : 0.14,
           transition: 'opacity 0.5s ease',
         }}
       />

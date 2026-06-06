@@ -73,12 +73,7 @@ export default function CarDetailPanel({ car, onClose }) {
           >
             {/* Left — hero image */}
             <div className="relative w-[48%] flex-shrink-0 overflow-hidden">
-              {/* Glow */}
-              <div
-                className="absolute inset-0 opacity-30 pointer-events-none"
-                style={{ background: car.gradient, filter: 'blur(60px)' }}
-              />
-              {!loaded && <div className="absolute inset-0 bg-[#111] animate-pulse z-10" />}
+{!loaded && <div className="absolute inset-0 bg-[#111] animate-pulse z-10" />}
               <img
                 src={car.image}
                 alt={`${car.brand} ${car.model}`}
@@ -122,9 +117,7 @@ export default function CarDetailPanel({ car, onClose }) {
 function MobileImage({ car, loaded, setLoaded, onClose }) {
   return (
     <>
-      <div className="absolute inset-0 opacity-25 pointer-events-none"
-        style={{ background: car.gradient, filter: 'blur(40px)' }} />
-      {!loaded && <div className="absolute inset-0 bg-[#111] animate-pulse" />}
+{!loaded && <div className="absolute inset-0 bg-[#111] animate-pulse" />}
       <img
         src={car.image}
         alt={`${car.brand} ${car.model}`}
