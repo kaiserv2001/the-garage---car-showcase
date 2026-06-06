@@ -30,10 +30,10 @@ assets/*.mp3
 assets/*.ogg
 assets/*.wav
 assets/*.m4a
-public/videos/*.mp4
 public/videos/*.mov
 public/videos/*.webm
-# public/audio files are tracked (small SFX + bgmusic under 100MB)
+# public/audio — bgmusic + hover SFX tracked; onclick removed intentionally
+public/audio/onclick.mp3
 
 # ── Logs ──────────────────────────────────────────────────
 logs/
