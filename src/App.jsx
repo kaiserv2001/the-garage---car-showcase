@@ -15,8 +15,7 @@ function App() {
   const [muted, setMuted] = useState(false)
   const audioRef = useRef(null)
 
-  const playHover = useSound('/audio/menu.mp3', 0.45)
-  const playClick = useSound('/audio/onclick.mp3', 0.45)
+  const playHover = useSound('/audio/menu.mp3', 0.50)
 
   const handleEnter = useCallback(() => {
     setWelcomed(true)
@@ -24,16 +23,14 @@ function App() {
       audioRef.current.volume = 0.05
       audioRef.current.play().catch(() => {})
     }
-    playClick()
-  }, [playClick])
+  }, [])
 
   const toggleMute = useCallback(() => {
     if (audioRef.current) {
       audioRef.current.muted = !muted
       setMuted(m => !m)
     }
-    playClick()
-  }, [muted, playClick])
+  }, [muted])
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -42,6 +39,7 @@ function App() {
       <AnimatePresence>
         {!welcomed && <WelcomeScreen key="welcome" onEnter={handleEnter} onHover={playHover} />}
       </AnimatePresence>
+
 
       {welcomed && (
         <button
@@ -58,13 +56,13 @@ function App() {
         </button>
       )}
 
-      <HeroSection onHover={playHover} onClick={playClick} />
-      <FeaturedCars onSelect={setSelectedCar} onHover={playHover} onClick={playClick} />
-      <GallerySection onSelect={setSelectedCar} onHover={playHover} onClick={playClick} />
+      <HeroSection onHover={playHover} />
+      <FeaturedCars onSelect={setSelectedCar} onHover={playHover} />
+      <GallerySection onSelect={setSelectedCar} onHover={playHover} />
       <footer className="border-t border-white/[0.05] py-8 text-center">
         <p className="text-gray-700 text-xs tracking-[0.4em] uppercase">Curated automotive showcase</p>
       </footer>
-      <CarDetailPanel car={selectedCar} onClose={() => setSelectedCar(null)} onHover={playHover} onClick={playClick} />
+      <CarDetailPanel car={selectedCar} onClose={() => setSelectedCar(null)} onHover={playHover} />
     </div>
   )
 }

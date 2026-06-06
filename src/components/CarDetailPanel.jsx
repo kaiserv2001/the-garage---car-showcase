@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Zap, Gauge, Timer, Weight, Cpu, Workflow, Globe, Calendar } from 'lucide-react'
 
-export default function CarDetailPanel({ car, onClose, onHover, onClick }) {
+export default function CarDetailPanel({ car, onClose, onHover }) {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => { setLoaded(false) }, [car])
@@ -55,11 +55,11 @@ export default function CarDetailPanel({ car, onClose, onHover, onClick }) {
           >
             {/* Mobile image */}
             <div className="relative flex-shrink-0" style={{ height: '42vh' }}>
-              <MobileImage car={car} loaded={loaded} setLoaded={setLoaded} onClose={onClose} onHover={onHover} onClick={onClick} />
+              <MobileImage car={car} loaded={loaded} setLoaded={setLoaded} onClose={onClose} onHover={onHover} />
             </div>
             {/* Mobile content */}
             <div className="flex-1 overflow-y-auto">
-              <PanelContent car={car} mainSpecs={mainSpecs} detailSpecs={detailSpecs} onClose={onClose} onHover={onHover} onClick={onClick} />
+              <PanelContent car={car} mainSpecs={mainSpecs} detailSpecs={detailSpecs} onClose={onClose} onHover={onHover} />
             </div>
           </motion.div>
 
@@ -104,7 +104,7 @@ export default function CarDetailPanel({ car, onClose, onHover, onClick }) {
 
             {/* Right — scrollable content */}
             <div className="flex-1 overflow-y-auto relative">
-              <PanelContent car={car} mainSpecs={mainSpecs} detailSpecs={detailSpecs} onClose={onClose} onHover={onHover} onClick={onClick} desktop />
+              <PanelContent car={car} mainSpecs={mainSpecs} detailSpecs={detailSpecs} onClose={onClose} onHover={onHover} desktop />
             </div>
           </motion.div>
         </motion.div>
@@ -114,7 +114,7 @@ export default function CarDetailPanel({ car, onClose, onHover, onClick }) {
 }
 
 /* ── Shared mobile image block ── */
-function MobileImage({ car, loaded, setLoaded, onClose, onHover, onClick }) {
+function MobileImage({ car, loaded, setLoaded, onClose, onHover }) {
   return (
     <>
 {!loaded && <div className="absolute inset-0 bg-[#111] animate-pulse" />}
@@ -129,7 +129,7 @@ function MobileImage({ car, loaded, setLoaded, onClose, onHover, onClick }) {
       <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-transparent" />
       <div className="absolute top-0 left-0 right-0 h-[3px]"
         style={{ background: `linear-gradient(to right, transparent, ${car.color}, transparent)` }} />
-      <button onClick={() => { onClose(); onClick?.() }} onMouseEnter={onHover}
+      <button onClick={onClose} onMouseEnter={onHover}
         className="absolute top-4 right-4 p-2 rounded-full transition-colors duration-200 hover:bg-black/90 z-10"
         style={{ background: 'rgba(0,0,0,0.6)' }}>
         <X className="w-5 h-5 text-white" />
@@ -139,7 +139,7 @@ function MobileImage({ car, loaded, setLoaded, onClose, onHover, onClick }) {
 }
 
 /* ── Shared content block (mobile + desktop right column) ── */
-function PanelContent({ car, mainSpecs, detailSpecs, onClose, onHover, onClick, desktop }) {
+function PanelContent({ car, mainSpecs, detailSpecs, onClose, onHover, desktop }) {
   return (
     <motion.div
       className="px-6 md:px-10 lg:px-14 py-10"
@@ -150,7 +150,7 @@ function PanelContent({ car, mainSpecs, detailSpecs, onClose, onHover, onClick, 
       {/* Desktop close button */}
       {desktop && (
         <div className="flex justify-end mb-6">
-          <button onClick={() => { onClose(); onClick?.() }} onMouseEnter={onHover}
+          <button onClick={onClose} onMouseEnter={onHover}
             className="p-2 rounded-full transition-colors duration-200 hover:bg-white/10"
             style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
             <X className="w-5 h-5 text-gray-400" />
@@ -207,13 +207,13 @@ function PanelContent({ car, mainSpecs, detailSpecs, onClose, onHover, onClick, 
       {/* ── CTAs ── */}
       <div className="flex gap-3 flex-wrap">
         <button
-          onMouseEnter={onHover} onClick={onClick}
+          onMouseEnter={onHover}
           className="px-7 py-3 font-semibold tracking-wider uppercase text-xs transition-opacity hover:opacity-80"
           style={{ background: car.color, color: '#000' }}>
           Configure
         </button>
         <button
-          onMouseEnter={onHover} onClick={onClick}
+          onMouseEnter={onHover}
           className="px-7 py-3 text-gray-400 font-semibold tracking-wider uppercase text-xs hover:text-white transition-colors duration-300"
           style={{ border: '1px solid rgba(255,255,255,0.15)' }}>
           Learn More

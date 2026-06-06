@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { cars } from '../data/cars'
 import CarCard from './CarCard'
 
-export default function FeaturedCars({ onSelect, onHover, onClick }) {
+export default function FeaturedCars({ onSelect, onHover }) {
   const [activeId, setActiveId] = useState(null)
   const scrollRef = useRef(null)
   const speedRef = useRef(0)
@@ -76,7 +76,6 @@ export default function FeaturedCars({ onSelect, onHover, onClick }) {
               onHover={setActiveId}
               onSelect={onSelect}
               onHoverSound={onHover}
-              onClickSound={onClick}
             />
           ))}
         </div>

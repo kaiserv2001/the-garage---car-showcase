@@ -11,7 +11,7 @@ function matchesFilter(car, filter) {
   return car.brand === filter
 }
 
-function GalleryCard({ car, onSelect, onHover, onClick }) {
+function GalleryCard({ car, onSelect, onHover }) {
   const [loaded, setLoaded] = useState(false)
   return (
     <motion.div
@@ -20,7 +20,7 @@ function GalleryCard({ car, onSelect, onHover, onClick }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.94 }}
       transition={{ duration: 0.28 }}
-      onClick={() => { onSelect(car); onClick?.() }}
+      onClick={() => onSelect(car)}
       onMouseEnter={onHover}
       className="relative overflow-hidden cursor-pointer group"
       style={{ aspectRatio: '16/10', border: '1px solid #1a1a1a' }}
@@ -65,7 +65,7 @@ function GalleryCard({ car, onSelect, onHover, onClick }) {
   )
 }
 
-export default function GallerySection({ onSelect, onHover, onClick }) {
+export default function GallerySection({ onSelect, onHover }) {
   const [activeFilter, setActiveFilter] = useState('All')
 
   const availableFilters = FILTERS.filter(f =>
@@ -87,7 +87,7 @@ export default function GallerySection({ onSelect, onHover, onClick }) {
         {availableFilters.map(filter => (
           <button
             key={filter}
-            onClick={() => { setActiveFilter(filter); onClick?.() }}
+            onClick={() => setActiveFilter(filter)}
             onMouseEnter={onHover}
             className="px-4 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-200"
             style={{
@@ -106,7 +106,7 @@ export default function GallerySection({ onSelect, onHover, onClick }) {
         <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <AnimatePresence mode="popLayout">
             {filtered.map(car => (
-              <GalleryCard key={car.id} car={car} onSelect={onSelect} onHover={onHover} onClick={onClick} />
+              <GalleryCard key={car.id} car={car} onSelect={onSelect} onHover={onHover} />
             ))}
           </AnimatePresence>
         </motion.div>

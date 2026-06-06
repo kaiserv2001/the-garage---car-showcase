@@ -63,14 +63,14 @@ function HeroSection({ onHover, onClick }) {
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-6">
           <button
             onMouseEnter={onHover}
-            onClick={() => { document.getElementById('featured')?.scrollIntoView({ behavior: 'smooth' }); onClick?.() }}
+            onClick={() => document.getElementById('featured')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-8 py-3 border-2 border-white text-white font-semibold tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300"
           >
             Explore Cars
           </button>
           <button
             onMouseEnter={onHover}
-            onClick={() => { document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' }); onClick?.() }}
+            onClick={() => document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-8 py-3 text-gray-300 font-semibold tracking-wider uppercase hover:text-white transition-colors duration-300"
           >
             View Collection →
